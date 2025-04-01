@@ -4,20 +4,10 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
 import os
 
-# 한글 폰트 설정
-try:
-    font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
-    if os.path.exists(font_path):
-        fm.fontManager.addfont(font_path)
-        plt.rcParams['font.family'] = 'NanumGothic'
-    else:
-        plt.rcParams['font.family'] = 'DejaVu Sans'  # fallback
-except:
-    plt.rcParams['font.family'] = 'DejaVu Sans'
-
+# 맑은고딕 시도 (깨질 경우 fallback)
+plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['font.size'] = 10
 
