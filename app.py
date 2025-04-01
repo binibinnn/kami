@@ -19,10 +19,16 @@ else:
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['font.size'] = 10
 
-# 🔐 구글 인증
+# 🔐 구글 인증 (스코프 수정 포함)
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
 try:
     creds_dict = st.secrets["gcp_service_account"]
-    credentials = Credentials.from_service_account_info(creds_dict)
+    credentials = Credentials.from_service_account_info(creds_dict, scopes=scope)
     gc = gspread.authorize(credentials)
 except Exception as e:
     st.error(f"❌ 인증 실패: {e}")
