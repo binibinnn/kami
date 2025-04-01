@@ -19,12 +19,8 @@ else:
 plt.rcParams['axes.unicode_minus'] = False
 plt.rcParams['font.size'] = 10
 
-# 🔐 구글 인증 (스코프 수정 포함)
-scope = [
-    "https://spreadsheets.google.com/feeds",
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-]
+# 🔐 구글 인증 (스코프 1개만 사용)
+scope = ["https://www.googleapis.com/auth/spreadsheets"]
 
 try:
     creds_dict = st.secrets["gcp_service_account"]
@@ -45,7 +41,7 @@ except Exception as e:
 
 df = pd.DataFrame(data)
 
-# 기본 감정 시각화만 테스트
+# 기본 감정 시각화
 from_col = "닉네임"
 to_col = "메시지"
 score_col = "감정 분석 결과"
