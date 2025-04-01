@@ -71,8 +71,7 @@ if input_player == "admin":
     labels = [f"{f}→{t}" for f, t in zip(filtered_df[from_col], filtered_df[to_col])]
 else:
     filtered_df = df[df[from_col] == input_player].dropna(subset=[score_col])
-    filtered_df = filtered_df.sort_values(score_col)
-labels = filtered_df[to_col].tolist()
+    labels = filtered_df[to_col].tolist()
 
 filtered_df = filtered_df.sort_values(score_col)
 bar_colors = ["blue" if v < 0 else "red" for v in filtered_df[score_col]]
@@ -82,7 +81,7 @@ fig, ax = plt.subplots(figsize=(10, 5))
 x = range(len(filtered_df))
 ax.bar(x, filtered_df[score_col], color=bar_colors, width=0.35)
 ax.set_xticks(x)
-ax.set_xticklabels(labels, rotation=270, ha="center", fontproperties=font_prop)
+ax.set_xticklabels(labels, rotation="vertical", ha="center", fontproperties=font_prop)
 ax.axhline(0, color="gray", linestyle="--")
 ax.set_ylim(-100, 100)
 ax.set_title(f"{input_player}의 감정 수치", fontproperties=font_prop)
